@@ -1,0 +1,21 @@
+<h1>My Portfolio</h1>
+
+<div class="container">
+  <h3>Search stock</h3>
+  <%= form_tag search_stock_path, remote: true, method: :get, class: 'form-inline' do %>
+    <div class="form-group mb-2">
+      <%= text_field_tag :stock, params[:stock], class: 'form-control mr-2', placeholder: 'Search ticker', autofocus: true %>
+    </div>
+    <%= button_tag type: :submit, class: 'btn btn-primary mb-2' do %>
+      Submit
+    <% end %>
+  <% end %>
+
+  <div id="results">
+    <%= render partial: 'stocks/search' %>
+  </div>
+
+  <% if @tracked_stocks.present? && !@tracked_stocks.empty? %>
+    <%= render partial: 'stocks/list' %>
+  <% end %>
+</div>
